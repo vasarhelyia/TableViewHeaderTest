@@ -63,16 +63,13 @@ extension ViewController: UITableViewDataSource {
     cell.textLabel?.text = "\(indexPath.row)"
     return cell
   }
-
 }
 
 // MARK: UITableViewDelegate
 extension ViewController: UITableViewDelegate {
-
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return UITableViewAutomaticDimension
   }
-
 }
 
 // MARK: Custom Header view
@@ -138,5 +135,4 @@ final class HeaderView: UIView {
       stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8)
     ])
   }
-
 }
