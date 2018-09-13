@@ -1,2 +1,2 @@
 # TableViewHeaderTest
-Investigating Auto Layout issues in UITableView header views
+Investigating Auto Layout issues in `UITableView` header views
