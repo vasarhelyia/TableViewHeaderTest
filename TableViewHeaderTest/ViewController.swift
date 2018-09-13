@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     // Setting up table view header
 
     // There has to be an initial frame, otherwise it'll never get layed out
-    let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: 100, height: headerHeight))
     self.view.addSubview(headerView)
     self.tableView.tableHeaderView = headerView
 
@@ -46,11 +46,11 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
 
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+    return 2
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return 5
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,13 +63,23 @@ extension ViewController: UITableViewDataSource {
     cell.textLabel?.text = "\(indexPath.row)"
     return cell
   }
+
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    if section == 1 {
+      let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: 100, height: headerHeight))
+      headerView.title = "Section title"
+      return headerView
+    } else {
+      return nil
+    }
+  }
 }
 
 // MARK: UITableViewDelegate
 extension ViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    // If this is set to anything else, that breaks iOS 10 layout for the `tableHeaderView` (not section header)
-    return UITableViewAutomaticDimension
+    // If there is no header, header hight should be zero, otherwise it results in a broken iOS 10 layout for the `tableHeaderView` (header shows up)
+    return section == 0 ? 0 : self.headerHeight
   }
 }
 
