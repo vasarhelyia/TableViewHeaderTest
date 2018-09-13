@@ -68,6 +68,7 @@ extension ViewController: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension ViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    // If this is set to anything else, that breaks iOS 10 layout for the `tableHeaderView` (not section header)
     return UITableViewAutomaticDimension
   }
 }
